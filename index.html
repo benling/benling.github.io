@@ -70,6 +70,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-docker的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/03/docker的使用/" class="article-date">
+  <time datetime="2018-08-03T14:58:17.000Z" itemprop="datePublished">2018-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/03/docker的使用/">docker的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近因为项目上要部署多个前后端分离的应用，要配置多个环境，正好最近在学习docker容器技术，所以可以用docker 来部署应用。<br>先要安装docker,安装docker 比较简单，本例基于centos7 yum 安装.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce</span><br></pre></td></tr></table></figure></p>
+<p>docker 安装好了，使用下面的命令来启动应用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker </span><br><span class="line">chkconfig docker on</span><br></pre></td></tr></table></figure></p>
+<p>测试是否安装好：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure></p>
+<p>上述命令，返回docker的版本信息，证明docker安装成功<br>接着，因国内的用户连接Docker官方仓库很慢，我们需要修改docker中国的官方镜像registry.docker-cn.com,配置如下 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi  vi  /etc/docker/daemon.json</span><br></pre></td></tr></table></figure></p>
+<p>#添加后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>],</span><br><span class="line">    <span class="string">"live-restore"</span>: <span class="literal">true</span></span><br><span class="line">&#125;/etc/docker/daemon.json</span><br></pre></td></tr></table></figure></p>
+<p>然后通过与远程docker仓库检索出官方的镜像，一般用git rearch可以找到解决:下面以安装tomcat来示例。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker pull tomcat</span><br><span class="line">docker images</span><br><span class="line">docker images</span><br><span class="line"><span class="comment">#显示结果</span></span><br><span class="line">REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">benling/tomcat           latest              f2a91732366c        3 months ago        1.848 kB</span><br><span class="line">``` </span><br><span class="line">运行这个容器，就可以进行使用了。</span><br><span class="line">``` bash</span><br><span class="line">docker run -d -p 8000:8080 benling/tomcat</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://benling.github.io/2018/08/03/docker的使用/" data-id="cjke648oe0000qgvkwkoc1vpy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker-nginx-tomcat-mysql/">docker nginx tomcat mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-mysql" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/28/mysql/" class="article-date">
@@ -101,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://benling.github.io/2018/07/28/mysql/" data-id="cjk48xsq40000kovk42odr6bm" class="article-share-link">Share</a>
+      <a data-url="http://benling.github.io/2018/07/28/mysql/" data-id="cjke648oe0001qgvkedkg5xsc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql的float类型转换问题/">mysql的float类型转换问题</a></li></ul>
@@ -159,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://benling.github.io/2018/06/17/hello-world/" data-id="cjk48xsq70001kovkz5q4zdp4" class="article-share-link">Share</a>
+      <a data-url="http://benling.github.io/2018/06/17/hello-world/" data-id="cjke648oe0003qgvkz19nkj19" class="article-share-link">Share</a>
       
       
     </footer>
@@ -182,7 +226,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql的float类型转换问题/">mysql的float类型转换问题</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker-nginx-tomcat-mysql/">docker nginx tomcat mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql的float类型转换问题/">mysql的float类型转换问题</a></li></ul>
     </div>
   </div>
 
@@ -192,7 +236,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/mysql的float类型转换问题/" style="font-size: 10px;">mysql的float类型转换问题</a>
+      <a href="/tags/docker-nginx-tomcat-mysql/" style="font-size: 10px;">docker nginx tomcat mysql</a> <a href="/tags/mysql的float类型转换问题/" style="font-size: 10px;">mysql的float类型转换问题</a>
     </div>
   </div>
 
@@ -201,7 +245,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
     </div>
   </div>
 
@@ -212,6 +256,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/08/03/docker的使用/">docker的使用</a>
+          </li>
         
           <li>
             <a href="/2018/07/28/mysql/">mysql</a>
